@@ -795,4 +795,5 @@ df_big = synthesize_time_series(
 
 print(df_big["LAST_SNAPSHOT_AT"].min(), df_big["LAST_SNAPSHOT_AT"].max(), df_big.shape)
 print(f"...writing FCT_PROMO_HOTLIST_FULL.parquet to Users/cassidy.hilton/Cursor Projects/unitFocus/data")
+df_big.to_parquet('FCT_PROMO_HOTLIST_FULL.parquet')
 df_big.to_parquet('/Users/cassidy.hilton/Cursor Projects/unitFocus/data/FCT_PROMO_HOTLIST_FULL.parquet')
