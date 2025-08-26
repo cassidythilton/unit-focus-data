@@ -117,6 +117,7 @@ LIKED_SOFT_DRINK_NAMES = [
 # Image directories (absolute paths)
 OPEN_IMG_DIR = "/Users/cassidy.hilton/Cursor Projects/unitFocus/img/open"
 MIDDAY_IMG_DIR = "/Users/cassidy.hilton/Cursor Projects/unitFocus/img/midday"
+BASE_IMG_PREFIX = "/Users/cassidy.hilton/Cursor Projects/unitFocus"
 
 def _scan_images(img_dir: str) -> Dict[str, str]:
     """Scan a directory and return a mapping: base filename (no ext) -> absolute path."""
@@ -126,7 +127,10 @@ def _scan_images(img_dir: str) -> Dict[str, str]:
             for fname in os.listdir(img_dir):
                 if fname.lower().endswith((".png", ".jpg", ".jpeg")):
                     key = os.path.splitext(fname)[0]
-                    mapping[key] = os.path.join(img_dir, fname)
+                    full_path = os.path.join(img_dir, fname)
+                    # Store as path relative to BASE_IMG_PREFIX
+                    rel_path = full_path.replace(BASE_IMG_PREFIX, "")
+                    mapping[key] = rel_path
     except Exception:
         pass
     return mapping
